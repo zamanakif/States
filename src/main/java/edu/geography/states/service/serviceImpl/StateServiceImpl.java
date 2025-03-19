@@ -66,28 +66,33 @@ public class StateServiceImpl implements StateService {
 
 
     public CityList getCitiesInState(String stateId) {
-        /*
         //System.out.println("Calling URL ....." + "http://localhost:8088/cities/list/states/" + stateId);return this.restTemplate.getForEntity("http://localhost:8088/cities/list/states/" + stateId, CityList.class);
-        System.out.println("Calling URL ....." + "http://CITIESDEMO/cities/list/states/" + stateId);
-        //ResponseEntity<CityList> respEntCityList = this.restTemplate.getForEntity("http://CITIESDEMO/cities/list/states/" + stateId, CityList.class);
-        //System.out.println("Number of cities returned = " + cityList.getBody().getListOfCities().stream().count());
-        CityList cityList = this.restTemplate.getForEntity("http://CITIESDEMO/cities/list/states/" + stateId, CityList.class).getBody();
-        //System.out.println("Number of cities returned = " + cityList.getBody().getListOfCities().stream().count());
+        System.out.println("Calling URL ..... http://CITIESDEMO/cities/states/" + stateId);
+        CityList cityList = this.restTemplate.getForEntity("http://CITIESDEMO/cities/states/" + stateId, CityList.class).getBody();
+        System.out.println("Number of cities returned = " + cityList.getListOfCities().stream().count());
         return cityList;
-        //return this.restTemplate.getForEntity("http://CITIESDEMO/cities/list/states/" + stateId, CityList.class);
-        */
-        return null;
+
+    }
+
+    public String getStateCapitalForStateId(String stateId) {
+        return getStateByStateId(stateId).getCapital();
+    }
+
+    public String getStateCapitalZipForStateId(String stateId) {
+        String stateCapital = getStateByStateId(stateId).getCapital();
+        return this.restTemplate.getForEntity("http://CITIESDEMO/cities/" + stateCapital + "/state/" + stateId, String.class).getBody();
     }
 
     public NPList getNPsInState(String stateCd) {
 
-        ResponseEntity<NPList> respEntNPList = this.restTemplate.getForEntity("http://localhost:8086/nps/list/states/"
-                + stateCd, NPList.class);
-        System.out.println("Number of NPs returned = " + respEntNPList.getBody().getListOfNPs().size());
+        //ResponseEntity<NPList> respEntNPList = this.restTemplate.getForEntity("http://localhost:8086/nps/list/states/" + stateCd, NPList.class);
+        //System.out.println("Number of NPs returned = " + respEntNPList.getBody().getListOfNPs().size());
         //return this.restTemplate.getForEntity("http://localhost:8086/nps/list/states/" + stateCd + "?size=" + size, NPList.class).getBody();
-        return respEntNPList.getBody();
+        return this.restTemplate.getForEntity("http://NATIONALPARKS/nps/list/states/" + stateCd, NPList.class).getBody();
+
         //return this.restTemplate.getForEntity("http://NATIONALPARKS/nps/list/states/" + stateCd + "?size=" + size, NPList.class);
     }
+
 
     /*
     @Autowired
