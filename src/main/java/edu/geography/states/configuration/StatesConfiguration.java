@@ -19,41 +19,4 @@ public class StatesConfiguration {
         factory.setReadTimeout(3000);
         return new RestTemplate(factory);
     }
-
-    /*
-    //Commented this as it is now deprecrated
-
-import org.springframework.http.client.ClientHttpRequestFactory;
-import java.time.Duration;
-
-    public RestTemplate restTemplate(RestTemplateBuilder builder) {
-        //HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
-        return builder.setConnectTimeout(Duration.ofMillis(3000))
-                    .setReadTimeout(Duration.ofMillis(3000))
-                    .requestFactory(this::getClientHttpRequestFactory)
-                    .build();
-    }
-
-    private ClientHttpRequestFactory getClientHttpRequestFactory() {
-        HttpComponentsClientHttpRequestFactory clientHttpRequestFactory = new HttpComponentsClientHttpRequestFactory();
-        clientHttpRequestFactory.setConnectTimeout(3000);
-        clientHttpRequestFactory.setReadTimeout(3000);
-        return clientHttpRequestFactory;
-    }
-    */
-
-    /*
-    //import org.springframework.web.reactive.function.client.WebClient;
-    @Bean
-    public WebClient.Builder getWebClientBuilder() {
-        return WebClient.builder();
-    }
-    */
-
-    /*
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
-    */
 }
