@@ -20,4 +20,7 @@ public interface StateService {
     CityList getCitiesInState(String stateId);
     //ResponseEntity<NPList> getNPsInState(String stateCd);
     NPList getNPsInState(String stateCd);
+    String getStateCapitalForStateId(String stateId);
+    String getStateCapitalZipForStateId(String stateId);
+
 }
